@@ -18,7 +18,7 @@ namespace HashServer
         {
             Config = HashServerConfig.Parse(args);
 
-            Task.Factory.StartNew(() => ScanDirectories(args.Where(path => Directory.Exists(path))), TaskCreationOptions.LongRunning);
+            Task.Factory.StartNew(() => ScanDirectories(Config.RecursiveDirectories), TaskCreationOptions.LongRunning);
 
             using (var host = new NancyHost(HostConfig, HostUri))
             {
@@ -34,7 +34,8 @@ namespace HashServer
             {
                 Console.WriteLine("Precaching path: {0}", path);
 
-                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Where(f => !f.StartsWith(@"E:\downloads\running"));
+                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories)
+                    .Where(f => !f.StartsWith(@"E:\downloads\running") && !f.EndsWith("thumbs.db"));
 
                 foreach (var file in files)
                 {

@@ -57,7 +57,8 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="FileHash.cs" />
-    <Compile Include="FileHashIndex.cs" />
+    <Compile Include="FileHashDuplicate.cs" />
+    <Compile Include="RavenIndexes.cs" />
     <Compile Include="HashModule.cs" />
     <Compile Include="HashServerConfig.cs" />
     <Compile Include="Program.cs" />

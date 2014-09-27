@@ -75,9 +75,7 @@ namespace HashServer
 
             Get["/duplicates", true] = async (args, ct) =>
             {
-                return await Task.Run(() => session.Query<FileHash, FileHashIndex>()
-                    .GroupBy(fh => fh.Hash)
-                    .Select(group => group.Select(fh => fh.Path)));
+                return await session.Query<FileHashDuplicate, DuplicateHashIndex>().ToListAsync();
             };
 
             Delete["/file/{path*}", true] = async (args, ct) =>
