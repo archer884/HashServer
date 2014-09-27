@@ -52,6 +52,8 @@ namespace HashServer
         
         public bool Validate(HashServerConfig target)
         {
+            // none of these properties are actually required, so
+            // we need this to validate otherwise null properties
             if (Property.GetValue(target) == null)
                 Property.SetValue(target, _values);
 
